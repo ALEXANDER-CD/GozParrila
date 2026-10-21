@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080808">
 <title>GÖZ Parrilla | Hamburguesas y choripanes</title>
-<meta name="description" content="Hamburguesas y choripanes hechos a la parrilla, con buenos ingredientes. Descubre nuestro menú y mira tu pedido en realidad aumentada.">
+<meta name="description" content="Hamburguesas y choripanes hechos a la parrilla, con buenos ingredientes. Descubre GÖZ Parrilla y mira nuestros productos en realidad aumentada.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --bg: #040404;
@@ -22,8 +23,9 @@
   --serif: 'Playfair Display', Georgia, serif;
   --sans: 'DM Sans', system-ui, sans-serif;
 }
+
 * { box-sizing: border-box; margin: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 body {
   min-width: 320px;
   background: var(--bg);
@@ -34,7 +36,7 @@ body {
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-button, a { -webkit-tap-highlight-color: transparent; }
+button, input { font: inherit; }
 :focus-visible { outline: 2px solid var(--orange-2); outline-offset: 3px; }
 .wrap { width: min(1180px, calc(100% - 2.5rem)); margin-inline: auto; }
 section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
@@ -42,9 +44,14 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.08; font-weight: 700; }
 h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); margin-bottom: .8rem; }
 .lead { color: var(--muted); max-width: 52ch; }
 .btn {
-  display: inline-flex; justify-content: center; align-items: center;
-  min-height: 46px; padding: .85rem 1.5rem; border-radius: 999px;
-  font-weight: 700; text-align: center; border: 1px solid var(--orange);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: .85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 1px solid var(--orange);
   transition: transform .2s, background .2s, border-color .2s;
 }
 .btn:hover { transform: translateY(-2px); }
@@ -52,42 +59,67 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); margin-bottom: .8rem; }
 .btn-line:hover { background: rgba(240,138,28,.12); }
 .cta-row { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
 .ph {
-  position: relative; overflow: hidden; background: linear-gradient(145deg, #1d1814, #120f0c);
-  border: 1px solid var(--line); border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #1d1814, #120f0c);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-/* Encabezado */
+/* Header */
 header {
-  position: sticky; top: 0; z-index: 50; background: rgba(8,8,8,.94);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(8, 8, 8, .94);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
 .bar {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
   position: relative;
 }
-
-.bar > .logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  justify-content: center;
+.logo {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
 }
-
-.bar > .logo img {
-  object-position: center;
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
-  
-nav ul { display: flex; align-items: center; gap: 1.5rem; list-style: none; padding: 0; }
+.logo-slot { font-family: var(--serif); font-weight: 800; font-size: 1.5rem; letter-spacing: .04em; }
+nav ul { display: flex; align-items: center; gap: clamp(.8rem, 1.8vw, 1.8rem); list-style: none; padding: 0; }
 nav a { color: var(--muted); font-size: .95rem; transition: color .2s; }
 nav a:hover { color: var(--text); }
 .burger {
-  display: none; place-items: center; background: transparent; border: 1px solid var(--line);
-  color: var(--text); width: 44px; height: 44px; border-radius: 12px; font-size: 1.3rem; cursor: pointer;
+  display: none;
+  flex: 0 0 auto;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--line);
+  color: var(--text);
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  font-size: 1.35rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
-.bar > .btn { padding: .6rem 1.1rem; font-size: .9rem; white-space: nowrap; }
+.bar .btn { padding: .6rem 1.1rem; font-size: .9rem; white-space: nowrap; }
 
-/* Portada */
+/* Hero */
 .hero { padding: clamp(5rem, 14vw, 10rem) 0 clamp(3rem, 8vw, 6rem); }
 .hero-grid { max-width: 860px; }
 .hero h1 { font-size: clamp(2.8rem, 7.5vw, 5.8rem); margin-bottom: 1.4rem; max-width: 12ch; }
@@ -99,8 +131,14 @@ nav a:hover { color: var(--text); }
 .about .ph { aspect-ratio: 5 / 4; }
 .parts { list-style: none; padding: 0; display: grid; gap: .8rem; margin-top: 1.6rem; }
 .parts li {
-  display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline;
-  padding: .9rem 1.1rem; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.03);
+  display: grid;
+  grid-template-columns: minmax(8rem, 9.5rem) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: .9rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255,255,255,.03);
 }
 .parts b { color: var(--orange-2); }
 .parts span { color: var(--muted); }
@@ -109,20 +147,21 @@ nav a:hover { color: var(--text); }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; margin-top: 2.2rem; }
 .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .card {
-  position: relative; min-width: 0; background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
-  border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem;
-  display: flex; flex-direction: column; gap: .7rem;
+  min-width: 0;
+  position: relative;
+  background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
   transition: transform .25s ease, border-color .25s;
 }
-.card::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
-  transition: opacity .25s;
-  background: radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(240,138,28,.18), transparent 70%);
-}
-.card h3 { font-size: 1.5rem; color: var(--orange-2); }
-.card p { color: var(--muted); font-size: .95rem; }
 .card .ph { aspect-ratio: 4 / 3; border-radius: 16px; }
-.card .foot { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-top: auto; padding-top: .4rem; }
+.card h3 { font-size: 1.5rem; color: var(--orange-2); overflow-wrap: anywhere; }
+.card p { color: var(--muted); font-size: .95rem; }
+.card .foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem; margin-top: auto; padding-top: .4rem; }
 .price { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; }
 .tag { font-size: .8rem; padding: .25rem .7rem; border: 1px solid var(--orange); border-radius: 999px; color: var(--orange-2); }
 .jack { border-color: rgba(240,138,28,.55); }
@@ -133,127 +172,144 @@ nav a:hover { color: var(--text); }
 /* Realidad aumentada */
 .ar { text-align: center; padding-top: 0; }
 .ar-box {
-  border: 1px solid var(--orange); border-radius: 32px; padding: clamp(2.2rem, 6vw, 4.5rem) 1.5rem;
+  border: 1px solid var(--orange);
+  border-radius: 32px;
+  padding: clamp(2.2rem, 6vw, 4.5rem) 1.5rem;
   background: radial-gradient(40rem 20rem at 50% 0, rgba(240,138,28,.25), transparent 70%), var(--surface);
 }
 .ar-box .lead { margin-inline: auto; }
 .ar-box .btn { margin-top: 1.8rem; }
 
-/* Contacto y redes */
+/* Visítanos */
 .visit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
 .visit dl { display: grid; gap: 1.1rem; margin-top: 1.4rem; }
 .visit dt { color: var(--orange-2); font-weight: 700; }
 .visit dd { color: var(--muted); overflow-wrap: anywhere; }
 .social { display: grid; gap: .8rem; }
 .social a {
-  display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-width: 0;
-  padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 16px;
-  background: rgba(255,255,255,.03); transition: border-color .2s;
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255,255,255,.03);
+  transition: border-color .2s;
 }
 .social a:hover { border-color: var(--orange); }
-.social b { color: var(--orange-2); flex: 0 0 auto; }
-.social span { color: var(--muted); min-width: 0; text-align: right; overflow-wrap: anywhere; }
+.social b { color: var(--orange-2); }
+.social span { color: var(--muted); text-align: right; overflow-wrap: anywhere; }
 footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--muted); font-size: .9rem; }
 
-/* Progreso de lectura y partículas decorativas */
+/* Detalles visuales */
 #fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
-#prog {
-  position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 60;
-  background: linear-gradient(90deg, var(--orange), var(--orange-2));
-  transform: scaleX(0); transform-origin: 0 50%; pointer-events: none;
+#prog { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 60; background: linear-gradient(90deg, var(--orange), var(--orange-2)); transform: scaleX(0); transform-origin: 0 50%; pointer-events: none; }
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s;
+  background: radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(240,138,28,.18), transparent 70%);
 }
+.card:hover::before { opacity: 1; }
 
-/* Responsive: tablets */
+/* Tablet */
 @media (max-width: 960px) {
-  .about-grid, .visit { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
-  .about-grid > div, .visit > div { min-width: 0; }
-  .about .ph { width: 100%; max-height: 440px; }
-  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .bar { gap: .75rem; }
-  nav ul { gap: .9rem; }
+  .about-grid, .visit { grid-template-columns: minmax(0, 1fr); gap: 2.2rem; }
+  .about .ph { max-height: 480px; }
+  .bar { gap: .8rem; }
+  .logo { width: 185px; }
+  nav ul { gap: .85rem; }
+  nav a { font-size: .88rem; }
 }
 
-/* Responsive: móviles */
+/* Móvil */
 @media (max-width: 760px) {
-  html { scroll-padding-top: 76px; }
-  .wrap { width: calc(100% - 2rem); }
-  section { padding: 3.5rem 0; }
-  .bar { min-height: 68px; height: 68px; gap: .75rem; }
-  .logo { width: 150px; height: 58px; min-width: 0; flex-shrink: 1; }
-  .burger { display: grid; flex: 0 0 44px; }
-  .bar > .btn { display: none; }
+  html { scroll-padding-top: 78px; }
+  .wrap { width: min(100% - 2rem, 560px); }
+  .bar { min-height: 76px; justify-content: space-between; }
+  /* El logo queda centrado respecto al header, no respecto al espacio restante */
+  .bar > .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 190px;
+    height: 70px;
+    justify-content: center;
+    z-index: 1;
+  }
+  .bar > .logo img { object-position: center; }
+  .burger {
+    display: inline-flex;
+    margin-left: auto;
+    position: relative;
+    z-index: 3;
+  }
+  .bar .btn { display: none; }
   nav {
-    position: absolute; top: 100%; left: 0; right: 0; display: none;
-    background: #080808; border-bottom: 1px solid var(--line);
-    box-shadow: 0 16px 30px rgba(0,0,0,.45);
+    position: absolute;
+    inset: 76px -1rem auto;
+    background: rgba(4,4,4,.98);
+    border-bottom: 1px solid var(--line);
+    display: none;
+    z-index: 5;
+    box-shadow: 0 16px 24px rgba(0,0,0,.25);
   }
   nav.open { display: block; }
-  nav ul { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: .5rem 1rem 1rem; }
-  nav a { display: block; padding: .85rem .25rem; font-size: 1rem; }
-  .hero { padding: 4.5rem 0 3.5rem; }
-  .hero h1 { font-size: clamp(2.6rem, 10vw, 4rem); line-height: 1.04; max-width: 11ch; margin-bottom: 1.1rem; }
-  .hero .lead { font-size: 1rem; }
-  .cta-row { gap: .75rem; margin-top: 1.5rem; }
-  .cta-row .btn { width: 100%; min-height: 50px; padding: .85rem 1rem; white-space: normal; }
-  .about-grid { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
-  .about-grid > div, .visit > div { min-width: 0; }
-  h2 { font-size: clamp(2rem, 8vw, 2.7rem); }
-  .about .ph { aspect-ratio: 5 / 4; max-height: none; }
-  .parts { gap: .65rem; margin-top: 1.25rem; }
-  .parts li { grid-template-columns: minmax(0, 1fr); gap: .2rem; padding: .9rem 1rem; }
-  .parts b, .parts span { overflow-wrap: anywhere; }
-  .cards, .cards.two { grid-template-columns: minmax(0, 1fr); gap: 1rem; margin-top: 1.5rem; }
-  .card { padding: .85rem; gap: .65rem; }
+  nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: .5rem 1.25rem 1rem; }
+  nav a { display: block; padding: .8rem 0; font-size: 1.05rem; }
+  .hero { padding-top: 4.5rem; }
+  .hero h1 { font-size: clamp(2.6rem, 12vw, 4.2rem); }
+  .cards, .cards.two { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .card { padding: .85rem; }
   .card .ph { aspect-ratio: 16 / 10; }
-  .card h3 { font-size: 1.4rem; }
-  .card p { line-height: 1.55; }
-  .price { font-size: 1.35rem; }
-  .sub { margin-top: 3rem; }
-  .note { line-height: 1.6; }
-  .ar { padding-top: 0; }
-  .ar-box { padding: 2.25rem 1.1rem; border-radius: 24px; }
-  .ar-box .btn { width: 100%; padding: .9rem 1rem; white-space: normal; }
-  .visit { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
-  .visit dl { gap: 1.2rem; }
-  .visit dd, .visit dt { overflow-wrap: anywhere; }
-  .social { gap: .7rem; }
-  .social a { align-items: center; flex-wrap: wrap; gap: .4rem .75rem; padding: .95rem 1rem; }
-  .social span { margin-left: auto; text-align: right; }
+  .parts li { grid-template-columns: minmax(0, 1fr); gap: .1rem; }
+  .cta-row { flex-direction: column; }
+  .cta-row .btn { width: 100%; }
+  .ar-box { border-radius: 24px; padding-inline: 1.15rem; }
+  .visit { gap: 2.5rem; }
+  .social a { padding: .95rem 1rem; }
   footer { padding: 1.4rem 0; }
 }
 
-/* Móviles estrechos */
+/* Celulares estrechos */
 @media (max-width: 380px) {
   .wrap { width: calc(100% - 1.5rem); }
-  .logo { width: 132px; }
-  .hero h1 { font-size: 2.5rem; }
-  .social a { align-items: flex-start; flex-direction: column; gap: .2rem; }
-  .social span { margin-left: 0; text-align: left; }
+  .bar > .logo { width: 158px; height: 64px; }
+  .burger { width: 42px; height: 42px; }
+  .social a { gap: .5rem; padding: .85rem .75rem; font-size: .9rem; }
+  .social span { max-width: 58%; }
+  .parts li { padding: .85rem; }
+  .ar-box .btn { width: 100%; padding-inline: .8rem; }
 }
 
-/* Pantallas grandes */
-@media (min-width: 1500px) {
-  .wrap { width: min(1320px, calc(100% - 4rem)); }
-}
+/* Escritorios grandes */
+@media (min-width: 1500px) { .wrap { width: min(1320px, calc(100% - 4rem)); } }
 
-/* Accesibilidad */
+/* Reduce animaciones si el usuario lo solicita */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
 }
 </style>
 </head>
+
 <body>
 <div id="prog" aria-hidden="true"></div>
 <canvas id="fx" aria-hidden="true"></canvas>
 
 <header>
   <div class="wrap bar">
-    <a href="#inicio" class="logo" aria-label="Inicio — GÖZ Parrilla">
-      <img src="media/Logo.png" alt="GÖZ Parrilla" width="200" height="120">
+    <a href="#inicio" class="logo" aria-label="GÖZ Parrilla">
+      <img src="media/Logo.png" alt="GÖZ Parrilla">
     </a>
 
-    <nav id="nav" aria-label="Navegación principal">
+    <nav id="nav" aria-label="Menú principal">
       <ul>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#menu">Menú</a></li>
@@ -262,7 +318,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--mute
       </ul>
     </nav>
 
-    <a class="btn btn-fill" href="https://hamburguesa-sage.vercel.app/">Verlo en AR</a>
+    <a class="btn btn-fill header-cta" href="https://hamburguesa-sage.vercel.app/">Verlo en AR</a>
     <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -293,7 +349,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--mute
         </ul>
       </div>
       <div class="ph">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80" alt="Selección de carnes y alimentos a la parrilla" width="900" height="720" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80" alt="Carne y alimentos a la parrilla" loading="lazy">
       </div>
     </div>
   </section>
@@ -304,17 +360,17 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--mute
       <p class="lead">Todas llevan cheddar, cebolla caramelizada y salsa de la casa en pan brioche. Solo cambia cuántas carnes eliges.</p>
       <div class="cards">
         <article class="card">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=700&q=80" alt="Hamburguesa sencilla con queso" width="700" height="525" loading="lazy"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=700&q=80" alt="Hamburguesa sencilla" loading="lazy"></div>
           <h3>Sencilla</h3><p>Una carne de 150 g.</p>
           <div class="foot"><span class="price">$00.000</span><span class="tag">150 g</span></div>
         </article>
         <article class="card">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80" alt="Hamburguesa doble con queso" width="700" height="525" loading="lazy"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80" alt="Hamburguesa doble" loading="lazy"></div>
           <h3>Doble</h3><p>Dos carnes y doble cheddar.</p>
           <div class="foot"><span class="price">$00.000</span><span class="tag">300 g</span></div>
         </article>
         <article class="card">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=700&q=80" alt="Hamburguesa triple" width="700" height="525" loading="lazy"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=700&q=80" alt="Hamburguesa triple" loading="lazy"></div>
           <h3>Triple</h3><p>Tres carnes y triple cheddar.</p>
           <div class="foot"><span class="price">$00.000</span><span class="tag">450 g</span></div>
         </article>
@@ -325,20 +381,20 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--mute
         <p class="lead">Choripán clásico y tradicional, terminado en la parrilla con una reducción a elegir.</p>
         <div class="cards two">
           <article class="card">
-            <div class="ph"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Comida a la parrilla" width="800" height="500" loading="lazy"></div>
+            <div class="ph" style="aspect-ratio:16/10"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Preparación a la parrilla" loading="lazy"></div>
             <h3>Cerveza negra</h3>
             <p>Cerveza negra, panela, mantequilla, ajo, cebolla y salsa inglesa.</p>
             <div class="foot"><span class="price">$00.000</span></div>
           </article>
           <article class="card jack">
-            <div class="ph"><img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Preparación de carne a la parrilla" width="800" height="500" loading="lazy"></div>
+            <div class="ph" style="aspect-ratio:16/10"><img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Carne preparada a la parrilla" loading="lazy"></div>
             <h3>Jack Daniel's</h3>
             <p>Jack Daniel's, jugo de piña, panela, teriyaki, mostaza, pimienta, sal y mantequilla.</p>
             <div class="foot"><span class="price">$00.000</span></div>
           </article>
         </div>
       </div>
-      <p class="note">Precios y fotografías de referencia: actualízalos con la información real de tu negocio.</p>
+      <p class="note">Precios y fotos de ejemplo: reemplázalos por la información definitiva de tu negocio.</p>
     </div>
   </section>
 
@@ -356,7 +412,7 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--mute
     <div class="wrap visit">
       <div>
         <h2>Visítanos</h2>
-        <p class="lead">Encuentra nuestro local y consulta los horarios de atención.</p>
+        <p class="lead">Completa estos datos con los de tu local.</p>
         <dl>
           <div><dt>Dirección</dt><dd>Calle 00 # 00-00, Ciudad</dd></div>
           <div><dt>Horario</dt><dd>Lunes a domingo, 12:00 m. a 10:00 p. m.</dd></div>
@@ -368,248 +424,135 @@ footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--mute
           <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><b>Instagram</b><span>@GÖZparrilla</span></a>
           <a href="https://tiktok.com/" target="_blank" rel="noopener noreferrer"><b>TikTok</b><span>@GÖZparrilla</span></a>
           <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer"><b>Facebook</b><span>GÖZ Parrilla</span></a>
-          <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener noreferrer"><b>WhatsApp</b><span>Pedidos</span></a>
+          <a href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer"><b>WhatsApp</b><span>Pedidos</span></a>
         </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap">© <span id="year">2026</span> GÖZ Parrilla</div></footer>
+<footer><div class="wrap">© 2026 GÖZ Parrilla</div></footer>
 
 <script>
 (() => {
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
 
-  function closeMenu() {
-    nav.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Abrir menú');
-  }
-
   burger.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(isOpen));
     burger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    burger.textContent = isOpen ? '×' : '☰';
   });
 
-  nav.addEventListener('click', (event) => {
-    if (event.target.closest('a')) closeMenu();
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeMenu();
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 760) closeMenu();
-  });
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-})();
-</script>
-
-<script>
-(() => {
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const prog = document.getElementById('prog');
-  let scrollTicking = false;
-
-  function updateProgress() {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    prog.style.transform = `scaleX(${maxScroll > 0 ? window.scrollY / maxScroll : 0})`;
-    scrollTicking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-      window.requestAnimationFrame(updateProgress);
-      scrollTicking = true;
+  nav.addEventListener('click', event => {
+    if (event.target.closest('a')) {
+      nav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Abrir menú');
+      burger.textContent = '☰';
     }
-  }, { passive: true });
+  });
+
+  // Barra de progreso de scroll
+  const progress = document.getElementById('prog');
+  const updateProgress = () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${maxScroll > 0 ? window.scrollY / maxScroll : 0})`;
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
   updateProgress();
 
-  if (reducedMotion) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (reduceMotion) return;
 
-  // Efectos de tarjetas y botones solo en dispositivos con ratón.
+  // Efectos interactivos solo con mouse/trackpad, no en pantallas táctiles
   if (finePointer) {
-    document.querySelectorAll('.card').forEach((card) => {
-      card.addEventListener('pointermove', (event) => {
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('pointermove', event => {
         const rect = card.getBoundingClientRect();
         const px = (event.clientX - rect.left) / rect.width;
         const py = (event.clientY - rect.top) / rect.height;
         card.style.setProperty('--mx', `${px * 100}%`);
         card.style.setProperty('--my', `${py * 100}%`);
-        card.style.transform = `perspective(800px) rotateX(${(.5 - py) * 5}deg) rotateY(${(px - .5) * 6}deg) translateY(-3px)`;
-        card.style.borderColor = 'rgba(240,138,28,.6)';
-        card.style.setProperty('--hover-light', '1');
+        card.style.transform = `perspective(800px) rotateX(${(.5 - py) * 4}deg) rotateY(${(px - .5) * 5}deg) translateY(-3px)`;
       });
-      card.addEventListener('pointerleave', () => {
-        card.style.transform = '';
-        card.style.borderColor = '';
-      });
-    });
-
-    document.querySelectorAll('.btn').forEach((button) => {
-      button.addEventListener('pointermove', (event) => {
-        const rect = button.getBoundingClientRect();
-        button.style.transform = `translate(${(event.clientX - rect.left - rect.width / 2) * .08}px, ${(event.clientY - rect.top - rect.height / 2) * .12}px)`;
-      });
-      button.addEventListener('pointerleave', () => { button.style.transform = ''; });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
     });
   }
 
-  // Partículas decorativas: menos partículas en móvil y pausa en pestañas ocultas.
+  // Partículas decorativas: se desactivan en dispositivos de bajo movimiento
   const canvas = document.getElementById('fx');
-  const ctx = canvas.getContext('2d', { alpha: true });
+  const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
+  let width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
   const random = (min, max) => min + Math.random() * (max - min);
-  let width = 0, height = 0;
-  let dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-  let particles = [];
-  let animationId = null;
-  let lastPointerTime = 0;
-  let pointerX = 0, pointerY = 0;
-  const drops = [];
-  const colors = ['#d9621c', '#a8401a', '#f0a23a'];
-
-  function resizeCanvas() {
+  const resizeCanvas = () => {
     width = window.innerWidth;
     height = window.innerHeight;
-    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = width < 700 ? 10 : 20;
-    particles = Array.from({ length: count }, () => {
-      const seed = Math.random() < .55;
-      return {
-        seed,
-        x: random(0, width),
-        y: random(0, height),
-        r: seed ? random(1.5, 3) : random(1, 2),
-        vy: seed ? random(.08, .22) : -random(.12, .3),
-        angle: random(0, 6.28),
-        speed: random(.004, .01),
-        depth: random(.3, 1),
-        rotation: random(0, 3)
-      };
+  };
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+
+  const particles = [];
+  const count = width < 700 ? 10 : 22;
+  for (let i = 0; i < count; i++) {
+    const seed = Math.random() < .55;
+    particles.push({
+      seed, x: random(0, width), y: random(0, height),
+      r: seed ? random(1.5, 3) : random(1, 2),
+      vy: seed ? random(.08, .22) : -random(.1, .3),
+      angle: random(0, Math.PI * 2), speed: random(.003, .009),
+      depth: random(.3, 1), rotation: random(0, 3)
     });
   }
 
-  function addDrop(x, y, vx = 0, vy = 0, big = false) {
-    if (drops.length >= 70) return;
-    drops.push({
-      x, y, vx: vx + random(-.4, .4), vy: vy + random(0, .8),
-      r: big ? random(2.5, 4) : random(1.2, 2.5),
-      color: colors[Math.floor(Math.random() * colors.length)]
-    });
-  }
-
-  window.addEventListener('pointermove', (event) => {
-    pointerX = event.clientX;
-    pointerY = event.clientY;
-    lastPointerTime = performance.now();
-    if (finePointer && Math.random() < .025) addDrop(pointerX, pointerY);
-  }, { passive: true });
-
-  window.addEventListener('pointerdown', (event) => {
-    if (!finePointer) return;
-    for (let i = 0; i < 7; i++) {
-      const angle = random(-Math.PI, 0);
-      const velocity = random(1, 3.5);
-      addDrop(event.clientX, event.clientY, Math.cos(angle) * velocity, Math.sin(angle) * velocity);
-    }
-  }, { passive: true });
-
+  let pointerX = width / 2, pointerY = height / 2;
   function drawFrame() {
-    if (document.hidden) {
-      animationId = null;
-      return;
-    }
-
     ctx.clearRect(0, 0, width, height);
-    const offsetX = finePointer ? (pointerX - width / 2) * .012 : 0;
-    const offsetY = finePointer ? (pointerY - height / 2) * .012 : 0;
+    const offsetX = (pointerX - width / 2) * .012;
+    const offsetY = (pointerY - height / 2) * .012;
 
-    particles.forEach((particle) => {
+    for (const particle of particles) {
       particle.angle += particle.speed;
       particle.y += particle.vy;
-      particle.x += Math.sin(particle.angle) * .25;
+      particle.x += Math.sin(particle.angle) * .22;
       if (particle.y > height + 10) particle.y = -10;
       if (particle.y < -10) particle.y = height + 10;
 
-      const x = particle.x + offsetX * particle.depth * 6;
-      const y = particle.y + offsetY * particle.depth * 6;
+      const x = particle.x + offsetX * particle.depth * 5;
+      const y = particle.y + offsetY * particle.depth * 5;
       if (particle.seed) {
         ctx.fillStyle = 'rgba(243,226,196,.25)';
         ctx.beginPath();
-        ctx.ellipse(x, y, particle.r * 1.5, particle.r, particle.rotation + particle.angle, 0, Math.PI * 2);
+        ctx.ellipse(x, y, particle.r * 1.4, particle.r, particle.rotation + particle.angle, 0, Math.PI * 2);
         ctx.fill();
       } else {
         ctx.fillStyle = 'rgba(240,138,28,.12)';
         ctx.beginPath();
-        ctx.arc(x, y, particle.r * 3.5, 0, Math.PI * 2);
+        ctx.arc(x, y, particle.r * 3, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = 'rgba(255,180,84,.65)';
+        ctx.fillStyle = 'rgba(255,180,84,.55)';
         ctx.beginPath();
         ctx.arc(x, y, particle.r, 0, Math.PI * 2);
         ctx.fill();
       }
-    });
-
-    if (finePointer && performance.now() - lastPointerTime < 2500 && Math.random() < .008) {
-      addDrop(pointerX, pointerY + 5, 0, 0, true);
     }
-
-    for (let i = drops.length - 1; i >= 0; i--) {
-      const drop = drops[i];
-      drop.vy += .16;
-      drop.vx *= .99;
-      drop.x += drop.vx;
-      drop.y += drop.vy;
-      if (drop.y > height + 25) {
-        drops.splice(i, 1);
-        continue;
-      }
-      ctx.fillStyle = drop.color;
-      ctx.beginPath();
-      ctx.arc(drop.x, drop.y, drop.r, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(drop.x - drop.r, drop.y);
-      ctx.lineTo(drop.x, drop.y - Math.min(drop.vy * 1.4, drop.r * 3) - drop.r);
-      ctx.lineTo(drop.x + drop.r, drop.y);
-      ctx.fill();
-    }
-
-    animationId = window.requestAnimationFrame(drawFrame);
+    requestAnimationFrame(drawFrame);
   }
 
-  function startAnimation() {
-    if (!reducedMotion && animationId === null && !document.hidden) {
-      animationId = window.requestAnimationFrame(drawFrame);
-    }
-  }
-
-  function stopAnimation() {
-    if (animationId !== null) {
-      window.cancelAnimationFrame(animationId);
-      animationId = null;
-    }
-  }
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stopAnimation();
-    else startAnimation();
-  });
-
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas, { passive: true });
-  startAnimation();
+  window.addEventListener('pointermove', event => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+  }, { passive: true });
+  drawFrame();
 })();
 </script>
 </body>
