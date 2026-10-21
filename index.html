@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GÖZ Parrilla | Hamburguesas y choripanes</title>
+<meta name="description" content="Parrilla de hamburguesas y choripanes glaseados. Míralos en realidad aumentada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#040404; --surface:#1a1613; --line:#3a2d22; --text:#f6efe6; --muted:#b3a597;
+  --orange:#f08a1c; --orange-2:#ffb454; --radius:22px;
+  --serif:'Playfair Display',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font:400 1rem/1.6 var(--sans);overflow-x:hidden;
+  background-image:radial-gradient(60rem 30rem at 85% -5%,rgba(240,138,28,.16),transparent 60%)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--orange-2);outline-offset:3px}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+section{padding:clamp(3.5rem,8vw,6.5rem) 0}
+h1,h2,h3{font-family:var(--serif);line-height:1.08;font-weight:700}
+h2{font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:.8rem}
+.lead{color:var(--muted);max-width:52ch}
+.btn{display:inline-flex;justify-content:center;align-items:center;padding:.85rem 1.5rem;border-radius:999px;font-weight:700;border:1px solid var(--orange);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-fill{background:linear-gradient(180deg,var(--orange-2),var(--orange));color:#1b0f02;border-color:transparent}
+.btn-line:hover{background:rgba(240,138,28,.12)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.ph{position:relative;overflow:hidden;background:linear-gradient(145deg,#1d1814,#120f0c);border:1.5px dashed var(--line);border-radius:var(--radius)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:rgb(8, 8, 8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:1rem}
+.logo{width:200px;height:120px;display:flex;align-items:center}
+.logo img{max-width:100%;max-height:100%}
+.logo-slot{font-family:var(--serif);font-weight:800;font-size:1.5rem;letter-spacing:.04em}
+nav ul{display:flex;gap:1.8rem;list-style:none;padding:0}
+nav a{color:var(--muted);font-size:.95rem;transition:color .2s}
+nav a:hover{color:var(--text)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--text);width:44px;height:44px;border-radius:12px;font-size:1.3rem;cursor:pointer}
+.bar .btn{padding:.6rem 1.1rem;font-size:.9rem}
+
+/* Hero */
+.hero{padding:clamp(5rem,14vw,10rem) 0 clamp(3rem,8vw,6rem)}
+.hero-grid{max-width:860px}
+.hero h1{font-size:clamp(2.8rem,7.5vw,5.8rem);margin-bottom:1.4rem;max-width:12ch}
+.hero .lead{font-size:1.1rem}
+
+/* Nosotros */
+.about{background:var(--surface);border-block:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center}
+.about .ph{aspect-ratio:5/4}
+.parts{list-style:none;padding:0;display:grid;gap:.8rem;margin-top:1.6rem}
+.parts li{display:grid;grid-template-columns:9.5rem 1fr;gap:1rem;align-items:baseline;padding:.9rem 1.1rem;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}
+.parts b{color:var(--orange-2)}
+.parts span{color:var(--muted)}
+
+/* Menú */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;margin-top:2.2rem}
+.cards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:var(--radius);padding:1rem;display:flex;flex-direction:column;gap:.7rem}
+.card .ph{aspect-ratio:4/3;border-radius:16px}
+.card h3{font-size:1.5rem;color:var(--orange-2)}
+.card p{color:var(--muted);font-size:.95rem}
+.card .foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:.4rem}
+.price{font-family:var(--serif);font-size:1.5rem;font-weight:700}
+.tag{font-size:.8rem;padding:.25rem .7rem;border:1px solid var(--orange);border-radius:999px;color:var(--orange-2)}
+.jack{border-color:rgba(240,138,28,.55)}
+.sub{margin-top:4.5rem}
+.sub h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+.note{color:var(--muted);font-size:.9rem;margin-top:1.6rem}
+
+/* AR */
+.ar{text-align:center;padding-top:0}
+.ar-box{border:1px solid var(--orange);border-radius:32px;padding:clamp(2.2rem,6vw,4.5rem) 1.5rem;
+  background:radial-gradient(40rem 20rem at 50% 0,rgba(240,138,28,.25),transparent 70%),var(--surface)}
+.ar-box .lead{margin-inline:auto}
+.ar-box .btn{margin-top:1.8rem}
+
+/* Visítanos */
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:start}
+.visit dl{display:grid;gap:1.1rem;margin-top:1.4rem}
+.visit dt{color:var(--orange-2);font-weight:700}
+.visit dd{color:var(--muted)}
+.social{display:grid;gap:.8rem}
+.social a{display:flex;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);transition:border-color .2s}
+.social a:hover{border-color:var(--orange)}
+.social b{color:var(--orange-2)}
+.social span{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:1.8rem 0;color:var(--muted);font-size:.9rem}
+
+/* Interactividad */
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:40;pointer-events:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;background:linear-gradient(90deg,var(--orange),var(--orange-2));transform:scaleX(0);transform-origin:0 50%}
+.card{position:relative;transition:transform .25s ease,border-color .25s;will-change:transform}
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;
+  background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(240,138,28,.18),transparent 70%)}
+.card:hover::before{opacity:1}
+.card:hover{border-color:rgba(240,138,28,.6)}
+.btn{will-change:transform}
+
+/* Responsive */
+@media (max-width:960px){
+  .hero-grid,.about-grid,.visit{grid-template-columns:minmaFx(0,1fr);gap:2.2rem}
+}
+@media (max-width:760px){
+  .burger{display:block}
+  .bar .btn{display:none}
+  nav{position:absolute;inset:72px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}
+  nav a{display:block;padding:.8rem 0;font-size:1.05rem}
+  .cards,.cards.two{grid-template-columns:minmax(0,1fr)}
+  .parts li{grid-template-columns:1fr;gap:.1rem}
+  .cta-row .btn{width:100%}
+}
+@media (min-width:1500px){.wrap{width:min(1320px,100% - 4rem)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<header>
+  <div class="wrap bar">
+    <!-- LOGO: reemplaza el texto por <img src="logo.png" alt="GÖz Parrilla"> -->
+    <a href="#inicio" class="logo" aria-label="GÖz Parrilla"><img src="media/Logo.png"></a>
+    <nav id="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#menu">Menú</a></li>
+        <li><a href="#ar">Realidad aumentada</a></li>
+        <li><a href="#visitanos">Visítanos</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-fill" href="https://hamburguesa-sage.vercel.app/">Verlo en AR</a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Bienvenido a GÖZ Parrilla</h1> <display class="center"
+      <p class="lead">Hamburguesas y choripanes hechos a la parrilla, con calma y buenos ingredientes. Aquí se viene a comer rico y sin afán.</p>
+      <div class="cta-row">
+        <a class="btn btn-fill" href="#menu">Ver el menú</a>
+        <a class="btn btn-line" href="https://hamburguesa-sage.vercel.app/">Verlo en realidad aumentada</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="nosotros">
+  <div class="wrap about-grid">
+    <div>
+      <h2>Un blend de tres cortes</h2>
+      <p class="lead">Mezclamos tres cortes para que cada carne de 150 g salga jugosa, con sabor profundo y una grasa que se funde en la plancha.</p>
+      <ul class="parts">
+        <li><b>Cogote de res</b><span>Sabor intenso y mucha jugosidad.</span></li>
+        <li><b>Pecho de res</b><span>Cuerpo y textura firme.</span></li>
+        <li><b>Barriga de cerdo o tocino</b><span>Grasa y un toque ahumado.</span></li>
+      </ul>
+    </div>
+    <div class="ph"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=70" alt="Carne a la parrilla" loading="lazy" onerror="this.remove()"></div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <h2>Hamburguesas</h2>
+    <p class="lead">Todas llevan cheddar, cebolla caramelizada y salsa de la casa en pan brioche. Solo cambia cuántas carnes eliges.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=700&q=70" alt="Hamburguesa sencilla" loading="lazy" onerror="this.remove()"></div>
+        <h3>Sencilla</h3><p>Una carne de 150 g.</p>
+        <div class="foot"><span class="price">$00.000</span><span class="tag">150 g</span></div>
+      </article>
+      <article class="card">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=70" alt="Hamburguesa doble" loading="lazy" onerror="this.remove()"></div>
+        <h3>Doble</h3><p>Dos carnes y doble cheddar.</p>
+        <div class="foot"><span class="price">$00.000</span><span class="tag">300 g</span></div>
+      </article>
+      <article class="card">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=700&q=70" alt="Hamburguesa triple" loading="lazy" onerror="this.remove()"></div>
+        <h3>Triple</h3><p>Tres carnes y triple cheddar.</p>
+        <div class="foot"><span class="price">$00.000</span><span class="tag">450 g</span></div>
+      </article>
+    </div>
+
+    <div class="sub">
+      <h2>Choripanes glaseados</h2>
+      <p class="lead">Choripán clásico y tradicional, terminado en la parrilla con una reducción a elegir.</p>
+      <div class="cards two">
+        <article class="card">
+          <div class="ph" style="aspect-ratio:16/10"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=70" alt="Choripán a la parrilla" loading="lazy" onerror="this.remove()"></div>
+          <h3>Cerveza negra</h3>
+          <p>Cerveza negra, panela, mantequilla, ajo, cebolla y salsa inglesa.</p>
+          <div class="foot"><span class="price">$00.000</span></div>
+        </article>
+        <article class="card jack">
+          <div class="ph" style="aspect-ratio:16/10"><img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=70" alt="Choripán glaseado" loading="lazy" onerror="this.remove()"></div>
+          <h3>Jack Daniel's</h3>
+          <p>Jack Daniel's, jugo de piña, panela, teriyaki, mostaza, pimienta, sal y mantequilla.</p>
+          <div class="foot"><span class="price">$00.000</span></div>
+        </article>
+      </div>
+    </div>
+    <p class="note">Precios y fotos son de ejemplo: cámbialos por los tuyos.</p>
+  </div>
+</section>
+
+<section class="ar" id="ar">
+  <div class="wrap">
+    <div class="ar-box">
+      <h2>Mira tu pedido antes de pedirlo</h2>
+      <p class="lead">Abre la cámara de tu celular y ve la hamburguesa o el choripán sobre tu mesa, en realidad aumentada.</p>
+      <a class="btn btn-fill" href="https://hamburguesa-sage.vercel.app/">Abrir realidad aumentada</a>
+    </div>
+  </div>
+</section>
+
+<section id="visitanos">
+  <div class="wrap visit">
+    <div>
+      <h2>Visítanos</h2>
+      <p class="lead">Completa estos datos con los de tu local.</p>
+      <dl>
+        <div><dt>Dirección</dt><dd>Calle 00 # 00-00, Ciudad</dd></div>
+        <div><dt>Horario</dt><dd>Lunes a domingo, 12:00 m. a 10:00 p. m.</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h2>Síguenos</h2>
+      <div class="social">
+        <a href="https://instagram.com/GÖZparrilla" target="_blank" rel="noopener"><b>Instagram</b><span>@GÖZparrilla</span></a>
+        <a href="https://tiktok.com/@GÖZparrilla" target="_blank" rel="noopener"><b>TikTok</b><span>@GÖZparrilla</span></a>
+        <a href="https://facebook.com/GÖZparrilla" target="_blank" rel="noopener"><b>Facebook</b><span>GÖZ Parrilla</span></a>
+        <a href="https://wa.me/573000000000" target="_blank" rel="noopener"><b>WhatsApp</b><span>Pedidos</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© 2026 GÖZ Parrilla</div></footer>
+
+<script>
+const b=document.getElementById('burger'),n=document.getElementById('nav');
+b.addEventListener('click',()=>{const o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+n.addEventListener('click',e=>{if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded',false)}});
+</script>
+<script>
+(()=>{
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const rnd=(a,b)=>a+Math.random()*(b-a);
+
+// Barra de progreso de scroll
+const prog=document.getElementById('prog');
+const sc=()=>{const m=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(m>0?scrollY/m:0)+')'};
+addEventListener('scroll',sc,{passive:true});sc();
+
+if(rm)return;
+
+// Tarjetas: inclinación suave + luz que sigue al cursor
+if(fine){
+  document.querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('pointermove',e=>{
+      const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--mx',px*100+'%');c.style.setProperty('--my',py*100+'%');
+      c.style.transform='perspective(800px) rotateX('+((.5-py)*7)+'deg) rotateY('+((px-.5)*9)+'deg) translateY(-4px)';
+    });
+    c.addEventListener('pointerleave',()=>{c.style.transform=''});
+  });
+  // Botones magnéticos
+  document.querySelectorAll('.btn').forEach(b=>{
+    b.addEventListener('pointermove',e=>{
+      const r=b.getBoundingClientRect();
+      b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.28)+'px)';
+    });
+    b.addEventListener('pointerleave',()=>{b.style.transform=''});
+  });
+}
+
+// Canvas: semillas y brasas flotando + gotas de salsa
+const c=document.getElementById('fx'),x=c.getContext('2d');
+let W,H,D=Math.min(devicePixelRatio||1,2);
+const size=()=>{W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)};
+size();addEventListener('resize',size);
+
+const fl=[];
+for(let i=0;i<(W<700?14:28);i++){
+  const seed=Math.random()<.55;
+  fl.push({seed,x:rnd(0,W),y:rnd(0,H),r:seed?rnd(2,3.4):rnd(1,2.2),vy:seed?rnd(.1,.3):-rnd(.2,.5),a:rnd(0,6.28),s:rnd(.004,.012),z:rnd(.3,1),rot:rnd(0,3)});
+}
+let mx=W/2,my=H/2,last=0,active=false;
+const dr=[],cols=['#d9621c','#a8401a','#f0a23a'];
+const drip=(X,Y,vx,vy,big)=>{if(dr.length<160)dr.push({x:X,y:Y,vx:vx+rnd(-.5,.5),vy:vy+rnd(0,1),r:big?rnd(3,5):rnd(1.5,3),c:cols[(Math.random()*3)|0]})};
+
+addEventListener('pointermove',e=>{
+  const sp=Math.hypot(e.clientX-mx,e.clientY-my);
+  mx=e.clientX;my=e.clientY;last=performance.now();active=true;
+  if(sp>3&&Math.random()<.05)drip(mx,my,0,0,false);
+},{passive:true});
+addEventListener('pointerdown',e=>{
+  mx=e.clientX;my=e.clientY;
+  for(let i=0;i<14;i++){const a=rnd(-Math.PI,0),v=rnd(1.5,5);drip(mx,my,Math.cos(a)*v,Math.sin(a)*v,Math.random()<.3)}
+});
+
+function frame(){
+  x.clearRect(0,0,W,H);
+  const ox=(mx-W/2)*.02,oy=(my-H/2)*.02;
+  for(const f of fl){
+    f.a+=f.s;f.y+=f.vy;f.x+=Math.sin(f.a)*.3;
+    if(f.y>H+10)f.y=-10;if(f.y<-10)f.y=H+10;
+    const X=f.x+ox*f.z*8,Y=f.y+oy*f.z*8;
+    if(f.seed){x.fillStyle='rgba(243,226,196,.32)';x.beginPath();x.ellipse(X,Y,f.r*1.5,f.r,f.rot+f.a,0,6.28);x.fill()}
+    else{x.fillStyle='rgba(240,138,28,.14)';x.beginPath();x.arc(X,Y,f.r*4,0,6.28);x.fill();x.fillStyle='rgba(255,180,84,.7)';x.beginPath();x.arc(X,Y,f.r,0,6.28);x.fill()}
+  }
+  // Goteo ocasional desde el cursor
+  if(active&&performance.now()-last<4000&&Math.random()<.012)drip(mx,my+6,0,0,true);
+  for(let i=dr.length-1;i>=0;i--){
+    const d=dr[i];d.vy+=.2;d.vx*=.99;d.x+=d.vx;d.y+=d.vy;
+    if(d.y>H+30){dr.splice(i,1);continue}
+    x.fillStyle=d.c;x.beginPath();x.arc(d.x,d.y,d.r,0,6.28);x.fill();
+    const t=Math.min(d.vy*1.6,d.r*4);
+    x.beginPath();x.moveTo(d.x-d.r,d.y);x.lineTo(d.x,d.y-t-d.r);x.lineTo(d.x+d.r,d.y);x.fill();
+  }
+  requestAnimationFrame(frame);
+}
+frame();
+})();
+</script>
+</body>
+</html>
